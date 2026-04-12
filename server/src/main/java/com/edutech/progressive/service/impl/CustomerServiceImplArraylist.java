@@ -1,55 +1,40 @@
 package com.edutech.progressive.service.impl;
- 
+
+import com.edutech.progressive.entity.Customers;
+import com.edutech.progressive.service.CustomerService;
+import org.springframework.stereotype.Service;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
- 
-import com.edutech.progressive.entity.Customers;
-import com.edutech.progressive.service.CustomerService;
- 
+
+@Service
 public class CustomerServiceImplArraylist implements CustomerService {
- 
-    List<Customers> customerList = new ArrayList<>();
- 
+
+    private static List<Customers> customersList = new ArrayList<>();
+
     @Override
     public List<Customers> getAllCustomers() throws SQLException {
-        return customerList;
+        return customersList;
     }
- 
+
     @Override
     public int addCustomer(Customers customers) throws SQLException {
-        customerList.add(customers);
-        return customerList.size();
+        customersList.add(customers);
+        return customersList.size();
     }
- 
+
     @Override
     public List<Customers> getAllCustomersSortedByName() throws SQLException {
-        List<Customers> sortedList = new ArrayList<>(customerList);
-        Collections.sort(sortedList);
-        return sortedList;
+        List<Customers> sortedCustomers = customersList;
+        Collections.sort(sortedCustomers);
+        return sortedCustomers;
     }
- 
+
+    @Override
     public void emptyArrayList() {
-        customerList.clear();
+        customersList = new ArrayList<>();
     }
 
-    @Override
-    public void updateCustomer(Customers customers) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateCustomer'");
-    }
-
-    @Override
-    public void deleteCustomer(int customerId) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCustomer'");
-    }
-
-    @Override
-    public Customers getCustomerById(int customerId) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCustomerById'");
-    }
- 
 }
